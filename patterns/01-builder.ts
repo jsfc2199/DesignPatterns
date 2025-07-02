@@ -67,3 +67,28 @@ class ComputerBuilder {
     return this.computer;
   }
 }
+
+//! Utilización
+function main(){
+    //como retornamos el this en todos los métodos, los podemos concatenar en la definición de lo que queremos buildear
+    //Si quitamos el build, estaremos teniendo una instancia de ComputerBuilder, si lo colocamos ya será una instancia de Computer
+    const basicComputer = 
+        new ComputerBuilder()
+        .setCpu('ryzen')
+        .setRam('teamgroup')
+        .build();
+
+    basicComputer.displayConfig()
+
+    const gamerComputer = 
+        new ComputerBuilder()
+        .setCpu('ryzen')
+        .setRam('CORSAIR')
+        .setStorage('1tb')
+        .build();
+
+    gamerComputer.displayConfig()
+
+}
+
+main()
