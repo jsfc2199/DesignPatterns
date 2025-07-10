@@ -79,5 +79,16 @@ class HealthyFoodRestaurantFactory implements RestaurantFactory {
     }
 }
 
+//utilización
+function main(factory: RestaurantFactory) {
+    const hamburguer = factory.createHambuerguer()
+    const drink = factory.createDrink()
 
+    hamburguer.prepare();
+    drink.pour();
+}
+
+
+main(new FastFoodRestaurantFactory())
+main(new HealthyFoodRestaurantFactory())
 
