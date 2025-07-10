@@ -10,36 +10,55 @@
  * https://refactoring.guru/es/design-patterns/prototype
  */
 
-class Documento {
-    public title: string;
-    public author: string;
-    private content: string;
-
-    constructor(title: string, author: string, content: string){
-        this.title = title;
-        this.author = author;
-        this.content = content;
+class Pokemon {
+    name: string;
+    type: string;
+    level: number;
+    attacks: string[];
+  
+    constructor(name: string, type: string, level: number, attacks: string[]) {
+        this.name = name;
+        this.type = type;
+        this.level = level;
+        this.attacks = attacks;
     }
-
-    //prototipo para clonar
-    public clone(): Documento{
-        return new Documento(this.title, this.author, this.content);
+  
+    // Método para clonar el Pokémon
+    clone(): Pokemon {
+      // Los ataques deben de evitar pasarse por referencia, es decir, no deben de ser el mismo arreglo.
+      // Completar: Debe devolver un nuevo Pokémon con los mismos atributos
+      return new Pokemon(this.name, this.type, this.level, this.attacks);
     }
-
-    display(): void{p
-        console.log(`${this.title} - ${this.author} - ${this.content}`);
+  
+    displayInfo(): void {
+      console.log(
+        `Nombre: ${this.name}\nTipo: ${this.type}\nNivel: ${
+          this.level
+        }\nAtaques: ${this.attacks.join(', ')}`
+      );
     }
-}
+  }
+  
+  // Tarea:
+  // 1. Crear un Pokémon base.
+  // 2. Clonar el Pokémon base y modificar algunos atributos en los clones.
+  // 3. Llamar a displayInfo en cada Pokémon para mostrar sus detalles.
+  
+  // Ejemplo:
+  // const basePokemon = new Pokemon("Charmander", "Fuego", 1, ["Llamarada", "Arañazo"]);
+  // const clone1 = basePokemon.clone();
+  // clone1.name = "Charmeleon";
+  // clone1.level = 16;
+  // clone1.attacks.push("Lanzallamas");
+  
+  // basePokemon.displayInfo(); // Aquí no debe de aparecer "Lanzallamas"
+  // clone1.displayInfo();
 
-function main(){
-    const documento1 = new Documento("El principito", "Antoine de Saint-Exupéry", "Un niño que vive en un planeta pequeño y que viaja por el espacio en busca de un gran principito");
+  const basePokemon = new Pokemon("Charmander", "Fuego", 1, ["Llamarada", "Arañazo"]);
+  const clone1 = basePokemon.clone();
+  clone1.name = "Charmeleon";
+  clone1.level = 16;
+  clone1.attacks.push("Lanzallamas");
 
-    documento1.display();
-
-    //para no perder la referencia a document debemos clonar el prototipo
-    const documento2 = documento1.clone();
-    documento2.display();
-
-}
-
-main();
+  basePokemon.displayInfo();
+  clone1.displayInfo();
